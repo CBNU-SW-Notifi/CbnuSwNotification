@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.realm.plugin)
+    id("io.realm.kotlin")
 }
 
 kotlin {
@@ -35,6 +35,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation("io.realm.kotlin:library-base:2.0.0-SNAPSHOT")
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -90,3 +91,5 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+
+task("testClasses") {}
