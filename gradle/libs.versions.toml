@@ -20,6 +20,7 @@ stately = "2.0.5"
 realm = "2.0.0-SNAPSHOT"
 
 [libraries]
+realm = { module = "io.realm.kotlin:gradle-plugin", version.ref = "realm" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -45,4 +46,3 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-realm-plugin = { id = "io.realm.kotlin", version.ref = "realm" }
