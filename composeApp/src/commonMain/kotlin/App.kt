@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import data.MongoDB
+import data.remote.appModule
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -54,5 +55,6 @@ val mongoModule = module {
 fun initializeKoin() {
     startKoin {
         modules(mongoModule)
+        modules(appModule())
     }
 }

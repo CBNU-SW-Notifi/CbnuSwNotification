@@ -40,6 +40,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
             implementation(libs.mongodb.realm)
@@ -54,12 +55,20 @@ kotlin {
             implementation(libs.navigator.screen.model)
             implementation(libs.navigator.transitions)
             implementation(libs.navigator.koin)
+
             implementation(libs.koin.core)
 
             implementation(libs.kotlin.coroutines)
             implementation(libs.stately.common)
 
-            implementation(libs.ktor.client.core)
+            implementation(libs.bundles.ktor)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.kotlin.serialization)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
