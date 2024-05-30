@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +8,12 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     id("io.realm.kotlin")
+    alias(libs.plugins.gradle.buildconfig)
+}
+
+buildConfig {
+    val prop = gradleLocalProperties(rootDir, providers)
+    buildConfigField("String", "BASE_URL", "\"${prop.getProperty("baseUrl")}\"")
 }
 
 kotlin {
@@ -51,6 +58,8 @@ kotlin {
 
             implementation(libs.kotlin.coroutines)
             implementation(libs.stately.common)
+
+            implementation(libs.ktor.client.core)
         }
     }
 }
