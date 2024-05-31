@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("io.realm.kotlin")
     alias(libs.plugins.gradle.buildconfig)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 buildConfig {
@@ -66,6 +68,9 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.cio)
             implementation(libs.kotlin.serialization)
+
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
 
         iosMain.dependencies {
@@ -112,3 +117,11 @@ android {
 }
 
 task("testClasses") {}
+
+room {
+    schemaDirectory("projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
+}
