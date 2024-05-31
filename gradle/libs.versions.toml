@@ -23,6 +23,7 @@ buildconfig = "5.3.5"
 room = "2.7.0-alpha03"
 ksp = "2.0.0-1.0.21"
 sqlite = "2.5.0-alpha03"
+gson = "2.11.0"
 
 [libraries]
 realm = { module = "io.realm.kotlin:gradle-plugin", version.ref = "realm" }
@@ -57,6 +58,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
