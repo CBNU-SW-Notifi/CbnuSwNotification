@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import data.MongoDB
+import data.database.InformationDao
 import data.di.appModule
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.core.context.startKoin
@@ -20,7 +21,7 @@ val darkRedColor = Color(color = 0xFF77000B)
 
 @Composable
 @Preview
-fun App() {
+fun App(informationDao: InformationDao) {
     initializeKoin()
 
     val lightColors = lightColorScheme(
@@ -40,6 +41,12 @@ fun App() {
     )
 
     MaterialTheme(colorScheme = colors) {
+        /*val information by informationDao.getInformation().collectAsState(initial = emptyList())
+        val scope = rememberCoroutineScope()
+
+        LaunchedEffect(true){
+            val information = informationDao.getInformation()
+        }*/
         Navigator(HomeScreen()) {
             SlideTransition(it)
         }
