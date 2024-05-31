@@ -41,10 +41,10 @@ fun App(informationDao: InformationDao) {
     )
 
     MaterialTheme(colorScheme = colors) {
-        /*val information by informationDao.getInformation().collectAsState(initial = emptyList())
+        val information by informationDao.getInformation(2).collectAsState(initial = informationDao)
         val scope = rememberCoroutineScope()
 
-        LaunchedEffect(true){
+        /*LaunchedEffect(true){
             val information = informationDao.getInformation()
         }*/
         Navigator(HomeScreen()) {

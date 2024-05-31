@@ -121,7 +121,7 @@ android {
 task("testClasses") {}
 
 room {
-    schemaDirectory("projectDir/schemas")
+    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
