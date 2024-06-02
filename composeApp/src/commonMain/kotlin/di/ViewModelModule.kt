@@ -1,4 +1,4 @@
-package data.di
+package di
 
 import org.koin.dsl.module
 import presentation.screen.home.HomeViewModel

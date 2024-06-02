@@ -1,4 +1,4 @@
-package data.di
+package di
 
 import data.repositories.JobRepositoryImpl
 import domain.JobRepository

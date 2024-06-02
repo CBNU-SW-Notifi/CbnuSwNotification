@@ -1,4 +1,4 @@
-package data.di
+package di
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO

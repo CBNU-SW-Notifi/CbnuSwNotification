@@ -8,7 +8,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import data.MongoDB
 import data.database.InformationDao
-import data.di.appModule
+import di.appModule
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -21,7 +21,7 @@ val darkRedColor = Color(color = 0xFF77000B)
 
 @Composable
 @Preview
-fun App(informationDao: InformationDao) {
+fun App() {
     initializeKoin()
 
     val lightColors = lightColorScheme(
@@ -41,8 +41,8 @@ fun App(informationDao: InformationDao) {
     )
 
     MaterialTheme(colorScheme = colors) {
-        val information by informationDao.getInformation(2).collectAsState(initial = informationDao)
-        val scope = rememberCoroutineScope()
+        //val information by informationDao.getInformation(2).collectAsState(initial = informationDao)
+        //val scope = rememberCoroutineScope()
 
         /*LaunchedEffect(true){
             val information = informationDao.getInformation()

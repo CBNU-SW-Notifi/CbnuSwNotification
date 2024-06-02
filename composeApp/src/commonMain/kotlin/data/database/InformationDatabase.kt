@@ -9,7 +9,7 @@ import core.StringListConverter
     entities = [Information::class],
     version = 1
 )
-@TypeConverters(StringListConverter::class)
+//@TypeConverters(StringListConverter::class)
 abstract class InformationDatabase : RoomDatabase() {
 
     abstract fun informationDao(): InformationDao

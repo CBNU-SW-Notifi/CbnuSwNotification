@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface InformationDao {
 
-    @Query(value = "SELECT * FROM information WHERE id = :id")
+    @Query(value = "SELECT * FROM information WHERE postId = :id")
     fun getInformation(id: Int): Flow<Information>
 
 }
