@@ -73,6 +73,9 @@ kotlin {
             implementation(libs.sqlite.bundled)
 
             implementation(libs.gson)
+
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
         }
 
         iosMain.dependencies {
