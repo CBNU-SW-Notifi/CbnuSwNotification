@@ -3,7 +3,7 @@ package org.devjeong.cbnu.room_cmp.database
 import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import data.database.InformationDatabase
+import database.InformationDatabase
 
 fun getInformationDatabase(context: Context): InformationDatabase {
     val dbFile = context.getDatabasePath("information.db")

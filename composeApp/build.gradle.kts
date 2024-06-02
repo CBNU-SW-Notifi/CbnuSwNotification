@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     id("io.realm.kotlin")
+    kotlin("plugin.serialization")
+
     alias(libs.plugins.gradle.buildconfig)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
@@ -43,6 +45,8 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
+            implementation(libs.koin.android)
+            implementation(libs.room.runtime.android)
         }
         commonMain.dependencies {
             implementation(libs.mongodb.realm)
@@ -59,6 +63,7 @@ kotlin {
             implementation(libs.navigator.koin)
 
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
 
             implementation(libs.kotlin.coroutines)
             implementation(libs.stately.common)
@@ -128,5 +133,13 @@ room {
 }
 
 dependencies {
-    ksp(libs.room.compiler)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.android)
+    add("kspCommonMainMetadata", libs.room.compiler)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata" ) {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 }

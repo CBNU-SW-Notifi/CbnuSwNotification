@@ -1,6 +1,6 @@
 package di
 
-import data.database.InformationDatabase
+import database.InformationDatabase
 import database.getInformationDatabase
 import org.koin.dsl.module
 

@@ -1,10 +1,10 @@
-package data.database
+package database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Information (
+data class InformationEntity (
     @PrimaryKey
     val postId : Int,
     val title : String,
