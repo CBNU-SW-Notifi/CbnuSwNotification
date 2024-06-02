@@ -1,3 +1,3 @@
 package data.di
 
-fun appModule() = listOf(providehttpClientModule, provideRepositoryModule, provideviewModelModule)
+fun appModule() = listOf(provideHttpClientModule, provideRepositoryModule, provideviewModelModule)
