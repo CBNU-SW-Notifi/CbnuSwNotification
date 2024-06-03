@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import kotlin.math.exp
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -40,6 +41,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            export(libs.kmpNotifier)
         }
     }
 
@@ -87,6 +89,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel.compose)
 
             implementation("co.touchlab:stately-common:2.0.5")
+
+            api(libs.kmpNotifier)
         }
 
         iosMain.dependencies {
