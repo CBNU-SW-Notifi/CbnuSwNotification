@@ -1,4 +1,9 @@
 package di
 
 fun appModule() =
-    listOf(provideHttpClientModule, provideRepositoryModule, provideviewModelModule, platformModule)
+    listOf(
+        provideHttpClientModule,
+        provideRepositoryModule,
+        platformModule,
+        provideviewModelModule
+    )

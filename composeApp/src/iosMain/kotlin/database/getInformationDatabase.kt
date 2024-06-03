@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import platform.Foundation.NSHomeDirectory
 
+/*
 fun getInformationDatabase(): InformationDatabase {
     val dbFile = NSHomeDirectory() + "/information.db"
     return Room.databaseBuilder<InformationDatabase>(
@@ -11,6 +12,5 @@ fun getInformationDatabase(): InformationDatabase {
         factory = { InformationDatabase::class.instantiateImpl() }
     )
         .setDriver(BundledSQLiteDriver())
-        .fallbackToDestructiveMigration(true)
         .build()
-}
+}*/

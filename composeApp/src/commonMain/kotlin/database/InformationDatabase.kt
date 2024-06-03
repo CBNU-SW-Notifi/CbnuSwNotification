@@ -20,6 +20,7 @@ abstract class InformationDatabase : RoomDatabase(), DB {
 }
 
 // Class 'AppDatabase_Impl' is not abstract and does not implement abstract base class member 'clearAllTables'.
+/*
 interface DB {
     fun clearAllTables() {}
-}
+}*/

@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/*
 actual class StringListConverter {
     @TypeConverter
     actual fun fromString(value: String): List<String> {
@@ -15,4 +16,4 @@ actual class StringListConverter {
     actual fun fromList(list: List<String>): String {
         return Gson().toJson(list)
     }
-}
+}*/

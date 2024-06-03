@@ -21,6 +21,10 @@ buildConfig {
 }
 
 kotlin {
+    sourceSets.commonMain {
+        kotlin.srcDir("build/generated/ksp/metadata")
+    }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -81,12 +85,15 @@ kotlin {
 
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+            implementation("co.touchlab:stately-common:2.0.5")
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
     }
+    task("testClasses")
 }
 
 android {
@@ -126,15 +133,11 @@ android {
     }
 }
 
-task("testClasses") {}
-
 room {
     schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.android)
     add("kspCommonMainMetadata", libs.room.compiler)
 }
 
