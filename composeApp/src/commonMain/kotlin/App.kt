@@ -14,19 +14,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.transitions.SlideTransition
 import data.MongoDB
 import database.PeopleDao
 import database.Person
-import database.dao.InformationDao
 import database.entity.InformationEntity
-import di.appModule
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import presentation.screen.home.HomeScreen
 import presentation.screen.home.HomeViewModel
 import presentation.screen.task.TaskViewModel
 
@@ -111,9 +105,10 @@ val mongoModule = module {
     factory { TaskViewModel(get()) }
 }
 
+/*
 fun initializeKoin() {
     startKoin {
         modules(mongoModule)
         modules(appModule())
     }
-}
+}*/
