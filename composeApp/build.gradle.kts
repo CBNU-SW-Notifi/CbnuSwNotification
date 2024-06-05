@@ -90,6 +90,8 @@ kotlin {
 
             implementation("co.touchlab:stately-common:2.0.5")
 
+            implementation(libs.paging.compose.common)
+
             api(libs.kmpNotifier)
         }
 
