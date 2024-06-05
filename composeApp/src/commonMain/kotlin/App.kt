@@ -14,15 +14,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import data.MongoDB
 import database.PeopleDao
 import database.Person
 import database.entity.InformationEntity
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.dsl.module
-import presentation.screen.home.HomeViewModel
-import presentation.screen.task.TaskViewModel
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -100,9 +97,8 @@ fun App(peopleDao: PeopleDao) {
 }
 
 val mongoModule = module {
-    single { MongoDB() }
-    factory { HomeViewModel(get()) }
-    factory { TaskViewModel(get()) }
+    //factory { HomeViewModel(get()) }
+    //factory { TaskViewModel(get()) }
 }
 
 /*

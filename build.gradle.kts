@@ -5,7 +5,6 @@ buildscript {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     dependencies {
-        classpath(libs.realm)
         classpath(libs.androidGradle)
         classpath(libs.composeGradle)
         classpath(libs.kotlinGradle)

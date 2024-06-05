@@ -1,3 +1,4 @@
+/*
 package di
 
 import org.koin.dsl.module
@@ -12,4 +13,4 @@ val provideviewModelModule = module {
         PostViewModel(get())
     }
 
-}
+}*/

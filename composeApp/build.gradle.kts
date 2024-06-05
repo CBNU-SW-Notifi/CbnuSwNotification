@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    id("io.realm.kotlin")
     kotlin("plugin.serialization")
 
     alias(libs.plugins.gradle.buildconfig)
@@ -55,7 +54,6 @@ kotlin {
             implementation(libs.room.runtime.android)
         }
         commonMain.dependencies {
-            implementation(libs.mongodb.realm)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

@@ -5,5 +5,5 @@ fun appModule() =
         provideHttpClientModule,
         provideRepositoryModule,
         platformModule,
-        provideviewModelModule
+        //provideviewModelModule
     )
