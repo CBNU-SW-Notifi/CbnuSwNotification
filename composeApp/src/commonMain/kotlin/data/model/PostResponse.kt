@@ -17,7 +17,7 @@ data class Pagination(
 )
 
 @Serializable
-data class JobModel(
+data class PostResponse(
     val data: List<Post>,
     val pagination: Pagination
 )

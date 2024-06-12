@@ -7,38 +7,35 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import app.cash.paging.compose.collectAsLazyPagingItems
 import domain.Post
+import org.koin.compose.getKoin
 
 @Composable
-fun PostListScreen(postViewModel: PostViewModel) {
-    val posts by postViewModel.posts.collectAsState()
-    val currentPage by postViewModel.currentPage.collectAsState()
+fun PostListScreen() {
+    val postViewModel: PostViewModel = getKoin().get()
+    val posts = postViewModel.posts.collectAsLazyPagingItems()
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         LazyColumn(modifier = Modifier.weight(1f)) {
-            items(posts) { post ->
-                PostItem(post)
+            items(count = posts.itemCount) { index ->
+                val post = posts[index]
+                post?.let {
+                    PostItem(post)
+                }
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            postViewModel.loadPosts(currentPage + 1, 10)
+            posts.refresh()
         }) {
             Text("Load More")
         }
-    }
-
-    LaunchedEffect(Unit) {
-        postViewModel.loadPosts(0, 10)
     }
 }
 

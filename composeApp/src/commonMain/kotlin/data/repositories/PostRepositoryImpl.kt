@@ -1,8 +1,8 @@
 package data.repositories
 
 import NetworkConstants
-import data.model.JobModel
-import domain.JobRepository
+import data.model.PostResponse
+import domain.PostRepository
 import domain.Post
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -11,16 +11,16 @@ import io.ktor.client.request.parameter
 import io.ktor.http.isSuccess
 import kotlinx.serialization.json.Json
 
-class JobRepositoryImpl(private val httpClient: HttpClient) : JobRepository {
+class PostRepositoryImpl(private val httpClient: HttpClient) : PostRepository {
     override suspend fun fetchJobList(page: Int, size: Int): List<Post> {
-        val response = httpClient.get(NetworkConstants.BASE_URL) {
+        val response = httpClient.get(NetworkConstants.BASE_URL + "/api/v1/information-post/list") {
             parameter("page", page)
             parameter("size", size)
         }
         if (response.status.isSuccess()) {
             val responseBody: String = response.body()
-            val jobModel: JobModel = Json.decodeFromString(responseBody)
-            return jobModel.data.map {
+            val postResponse: PostResponse = Json.decodeFromString(responseBody)
+            return postResponse.data.map {
                 Post(
                     postId = it.postId,
                     title = it.title,

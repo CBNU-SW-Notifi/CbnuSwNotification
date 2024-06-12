@@ -17,9 +17,12 @@ import androidx.compose.ui.unit.dp
 import database.PeopleDao
 import database.Person
 import database.entity.InformationEntity
+import di.appModule
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import presentation.screen.home.PostListScreen
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -27,7 +30,7 @@ val darkRedColor = Color(color = 0xFF77000B)
 @Composable
 @Preview
 fun App(peopleDao: PeopleDao) {
-    //initializeKoin()
+    initializeKoin()
 
     val lightColors = lightColorScheme(
         primary = lightRedColor,
@@ -74,7 +77,9 @@ fun App(peopleDao: PeopleDao) {
             SlideTransition(it)
         }*/
 
-        LazyColumn(
+        PostListScreen()
+
+        /*LazyColumn(
             modifier = Modifier
                 .fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
@@ -92,19 +97,12 @@ fun App(peopleDao: PeopleDao) {
                         .padding(16.dp)
                 )
             }
-        }
+        }*/
     }
 }
-
-val mongoModule = module {
-    //factory { HomeViewModel(get()) }
-    //factory { TaskViewModel(get()) }
-}
-
-/*
 fun initializeKoin() {
     startKoin {
-        modules(mongoModule)
+        //modules(mongoModule)
         modules(appModule())
     }
-}*/
+}

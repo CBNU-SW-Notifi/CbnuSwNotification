@@ -1,7 +1,5 @@
 package domain
 
-import data.model.JobModel
-
-interface JobRepository {
+interface PostRepository {
     suspend fun fetchJobList(page: Int, size: Int): List<Post>
 }
