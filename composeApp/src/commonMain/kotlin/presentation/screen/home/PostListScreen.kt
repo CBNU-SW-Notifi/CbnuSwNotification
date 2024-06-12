@@ -17,24 +17,16 @@ import data.model.Post
 import org.koin.compose.getKoin
 
 @Composable
-fun PostListScreen() {
-    val postViewModel: PostViewModel = getKoin().get()
-    val posts = postViewModel.posts.collectAsLazyPagingItems()
+fun MainScreen() {
+    val viewModel: MainViewModel = getKoin().get()
+    val posts = viewModel.pagingDataFlow.collectAsLazyPagingItems()
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        LazyColumn(modifier = Modifier.weight(1f)) {
-            items(count = posts.itemCount) { index ->
-                val post = posts[index]
-                post?.let {
-                    PostItem(post)
-                }
+    LazyColumn {
+        items(count = posts.itemCount) { index ->
+            val post = posts[index]
+            post?.let {
+                PostItem(post)
             }
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {
-            posts.refresh()
-        }) {
-            Text("Load More")
         }
     }
 }
@@ -44,6 +36,6 @@ fun PostItem(post: Post) {
     Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
         Text(text = post.title, style = androidx.compose.material3.MaterialTheme.typography.bodyMedium)
         Spacer(modifier = Modifier.height(4.dp))
-        Text(text = "Created: ${post.createTime}")
+        //Text(text = "Created: ${post.createTime}")
     }
 }

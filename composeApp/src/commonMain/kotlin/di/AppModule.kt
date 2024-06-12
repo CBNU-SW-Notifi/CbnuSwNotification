@@ -3,7 +3,7 @@ package di
 fun appModule() =
     listOf(
         provideHttpClientModule,
-        provideRepositoryModule,
+        provideJobHuntRepositoryModule,
         platformModule,
-        provideviewModelModule
+        provideViewModelModule
     )

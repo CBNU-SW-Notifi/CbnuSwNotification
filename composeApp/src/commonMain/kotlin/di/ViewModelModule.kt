@@ -1,11 +1,10 @@
 package di
 
 import org.koin.dsl.module
-import presentation.screen.home.PostViewModel
+import presentation.screen.home.MainViewModel
 
-val provideviewModelModule = module {
+val provideViewModelModule = module {
     single {
-        PostViewModel(get())
+        MainViewModel(get())
     }
-
 }
