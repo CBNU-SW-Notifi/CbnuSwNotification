@@ -15,7 +15,8 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
             MainScreen(navController)
         }
         composable("postDetail/{postId}") { backStackEntry ->
-            val postId = backStackEntry.arguments?.getString("postId")?.toIntOrNull() ?: return@composable
+            val postId =
+                backStackEntry.arguments?.getString("postId")?.toIntOrNull() ?: return@composable
             PostDetailScreen(postId, navController)
         }
     }
