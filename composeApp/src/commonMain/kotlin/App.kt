@@ -5,10 +5,12 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.compose.rememberNavController
 import database.PeopleDao
 import database.Person
 import database.entity.InformationEntity
 import di.appModule
+import navigation.NavGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.core.context.startKoin
 import presentation.screen.home.MainScreen
@@ -63,7 +65,8 @@ fun App(peopleDao: PeopleDao) {
             }
         }
 
-        MainScreen()
+        val navController = rememberNavController()
+        NavGraph(navController = navController)
 
         /*LazyColumn(
             modifier = Modifier

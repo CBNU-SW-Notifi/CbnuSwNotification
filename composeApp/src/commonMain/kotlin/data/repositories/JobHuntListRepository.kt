@@ -2,6 +2,7 @@ package data.repositories
 
 import NetworkConstants
 import data.model.ResponseData
+import data.model.job_hunt.PostDetail
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
@@ -13,15 +14,25 @@ import kotlinx.serialization.json.Json
 class JobHuntRepository(private val client: HttpClient) {
     private val json = Json { ignoreUnknownKeys = true }
     suspend fun fetchData(page: Int, size: Int): Flow<ResponseData> = flow {
-        val response: HttpResponse = client.get(NetworkConstants.BASE_URL + "/api/v1/information-post/list") {
-            parameter("page", page)
-            parameter("size", size)
-        }
+        val response: HttpResponse =
+            client.get(NetworkConstants.BASE_URL + "/api/v1/information-post/list") {
+                parameter("page", page)
+                parameter("size", size)
+            }
 
         val responseData = response.bodyAsText().let {
             json.decodeFromString<ResponseData>(it)
         }
 
         emit(responseData)
+    }
+
+    suspend fun fetchPostDetail(postId: Int): Flow<PostDetail> = flow {
+        val response: HttpResponse =
+            client.get(NetworkConstants.BASE_URL + "/api/v1/information-post/read/$postId")
+        val postDetail = response.bodyAsText().let {
+            json.decodeFromString<PostDetail>(it)
+        }
+        emit(postDetail)
     }
 }
