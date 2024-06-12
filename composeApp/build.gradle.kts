@@ -74,6 +74,12 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.cio)
             implementation(libs.kotlin.serialization)
+            implementation(libs.ktor.client.core)
+
+            implementation(libs.coil.compose.core)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.mp)
+            implementation(libs.coil.network.ktor)
 
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
