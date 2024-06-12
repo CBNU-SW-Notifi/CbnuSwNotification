@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.cash.paging.PagingData
 import app.cash.paging.cachedIn
-import domain.Post
+import data.model.Post
 import domain.PostRepositoryProvider
 import kotlinx.coroutines.flow.Flow
 

@@ -91,6 +91,8 @@ kotlin {
             implementation(libs.paging.compose.common)
 
             api(libs.kmpNotifier)
+
+            api(libs.kmLogging)
         }
 
         iosMain.dependencies {

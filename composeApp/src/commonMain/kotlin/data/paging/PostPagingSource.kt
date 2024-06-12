@@ -2,8 +2,8 @@ package data.paging
 
 import app.cash.paging.PagingSource
 import app.cash.paging.PagingState
+import data.model.Post
 import data.repositories.PostRepositoryImpl
-import domain.Post
 import domain.PostRepository
 
 class PostPagingSource(private val repository: PostRepository) : PagingSource<Int, Post>() {

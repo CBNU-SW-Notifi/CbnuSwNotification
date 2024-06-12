@@ -3,6 +3,7 @@ package domain
 import app.cash.paging.Pager
 import app.cash.paging.PagingConfig
 import app.cash.paging.PagingData
+import data.model.Post
 import data.paging.PostPagingSource
 import kotlinx.coroutines.flow.Flow
 

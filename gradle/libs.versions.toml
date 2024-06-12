@@ -29,6 +29,7 @@ lifecycleViewmodelAndroid = "2.8.0"
 gson = "2.11.0"
 pagingCommonVersion = "3.3.0-alpha02-0.5.1"
 kmpNotifier = "0.6.0"
+kmLogging = "1.4.2"
 
 [libraries]
 androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -75,6 +76,8 @@ androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecy
 androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 
 kmpNotifier = { group = "io.github.mirzemehdi", name = "kmpnotifier", version.ref = "kmpNotifier" }
+
+kmLogging = {module = "org.lighthousegames:logging", version.ref = "kmLogging"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
