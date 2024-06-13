@@ -19,3 +19,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
             provideRepositoryModule
         )
     }
+
+//using in iOS
+fun initKoin() = initKoin {}

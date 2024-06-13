@@ -8,12 +8,13 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSLog
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
+import database.job_hunt.instantiateImpl
 
 fun getJobHuntDatabase(): JobHuntDatabase {
     val fileManager = NSFileManager.defaultManager()
     val urls = fileManager.URLsForDirectory(NSDocumentDirectory, NSUserDomainMask)
     val documentsDirectory = urls.first() as NSURL
-    val dbFile = documentsDirectory.path + "/people.db"
+    val dbFile = documentsDirectory.path + "/job_hunt.db"
     NSLog("Database file path: $dbFile")
 
     if (!fileManager.fileExistsAtPath(dbFile)) {
