@@ -1,13 +1,13 @@
-package org.devjeong.cbnu.room_cmp.database
+package org.devjeong.cbnu.database
 
 import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import database.PeopleDatabase
+import database.job_hunt.JobHuntDatabase
 
-fun getPeopleDatabase(context: Context): PeopleDatabase {
-    val dbFile = context.getDatabasePath("people.db")
-    return Room.databaseBuilder<PeopleDatabase>(
+fun getJobHuntDatabase(context: Context): JobHuntDatabase {
+    val dbFile = context.getDatabasePath("job_hunt.db")
+    return Room.databaseBuilder<JobHuntDatabase>(
         context = context.applicationContext,
         name = dbFile.absolutePath
     )

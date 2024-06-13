@@ -14,15 +14,9 @@ import coil3.memory.MemoryCache
 import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
-import database.PeopleDao
-import database.Person
-import database.entity.InformationEntity
-import di.appModule
 import navigation.NavGraph
 import okio.FileSystem
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.core.context.startKoin
-import presentation.screen.home.MainScreen
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -30,8 +24,7 @@ val darkRedColor = Color(color = 0xFF77000B)
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 @Preview
-fun App(peopleDao: PeopleDao) {
-    initializeKoin()
+fun App() {
 
     setSingletonImageLoaderFactory { context ->
         getAsyncImageLoader(context)
@@ -54,7 +47,7 @@ fun App(peopleDao: PeopleDao) {
     )
 
     MaterialTheme(colorScheme = colors) {
-        val people by peopleDao.getAllPeople().collectAsState(initial = emptyList())
+        /*val people by postDetailDao.getAllPeople().collectAsState(initial = emptyList())
         val scope = rememberCoroutineScope()
 
         LaunchedEffect(true) {
@@ -64,7 +57,7 @@ fun App(peopleDao: PeopleDao) {
                 Person(name = "Philipp"),
             )
             peopleList.forEach {
-                peopleDao.upsert(it)
+                postDetailDao.upsert(it)
             }
         }
 
@@ -77,7 +70,7 @@ fun App(peopleDao: PeopleDao) {
             peopleList.forEach {
                 //informationDao.upsert(it)
             }
-        }
+        }*/
 
         val navController = rememberNavController()
         NavGraph(navController = navController)
@@ -101,12 +94,6 @@ fun App(peopleDao: PeopleDao) {
                 )
             }
         }*/
-    }
-}
-
-fun initializeKoin() {
-    startKoin {
-        modules(appModule())
     }
 }
 

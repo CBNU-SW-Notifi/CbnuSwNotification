@@ -3,8 +3,6 @@ package presentation.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,12 +22,10 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
     viewModel.getPostDetail(postId)
 
     postDetail?.let { detail ->
-        LazyColumn {
-            item {
-                Text(text = "Title: ${detail.title}")
-                Text(text = "Content: ${detail.content}")
-            }
-            items(detail.imageUrls) { imageUrl ->
+        Column {
+            Text(text = "Title: ${detail.title}")
+            Text(text = "Content: ${detail.content}")
+            detail.imageUrls.forEach { imageUrl ->
                 val imageUri = if (imageUrl.startsWith("data:image")) {
                     imageUrl
                 } else {
@@ -42,13 +38,7 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
             }
-            item {
-                Text(text = "Attached Files:")
-            }
-            items(detail.attachedFiles) { attachedFile ->
-                Text(text = "Name: ${attachedFile.name}")
-                Text(text = "URL: ${attachedFile.url}")
-            }
         }
+
     }
 }
