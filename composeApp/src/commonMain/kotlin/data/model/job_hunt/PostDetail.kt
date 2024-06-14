@@ -7,8 +7,8 @@ data class PostDetail(
     val postId: Int,
     val title: String,
     val content: String,
-    val imageUrls: List<String>,
-    val attachedFiles: List<AttachedFile>,
+    val imageUrls: List<String>?,
+    val attachedFiles: List<AttachedFile>?,
     val postType: String,
     val createTime: String
 )

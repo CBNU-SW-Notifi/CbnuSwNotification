@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5351a35534df52bd4d122f68d48ec331",
+    "identityHash": "a3ccf85c07bbcbc341d41f1e8017bd64",
     "entities": [
       {
         "tableName": "job_hunt_entity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`postId` INTEGER NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `postType` TEXT NOT NULL, `createTime` TEXT NOT NULL, `image_url` TEXT NOT NULL, `attached_name` TEXT NOT NULL, `attached_url` TEXT NOT NULL, PRIMARY KEY(`postId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`postId` INTEGER NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `postType` TEXT NOT NULL, `createTime` TEXT NOT NULL, `image_url` TEXT, `attached_name` TEXT, `attached_url` TEXT, PRIMARY KEY(`postId`))",
         "fields": [
           {
             "fieldPath": "postId",
@@ -41,20 +41,17 @@
           {
             "fieldPath": "imageUrls.url",
             "columnName": "image_url",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "attachedFiles.name",
             "columnName": "attached_name",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "attachedFiles.url",
             "columnName": "attached_url",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -67,7 +64,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5351a35534df52bd4d122f68d48ec331')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a3ccf85c07bbcbc341d41f1e8017bd64')"
     ]
   }
 }

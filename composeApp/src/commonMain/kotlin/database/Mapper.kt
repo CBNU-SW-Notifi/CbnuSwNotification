@@ -10,11 +10,13 @@ fun PostDetail.toEntity(): JobHuntEntity {
         postId = this.postId,
         title = this.title,
         content = this.content,
-        imageUrls = ImageUrl(this.imageUrls.joinToString(",")),
-        attachedFiles = AttachedFile(
-            name = this.attachedFiles.joinToString(",") { it.name },
-            url = this.attachedFiles.joinToString(",") { it.url }
-        ),
+        imageUrls = this.imageUrls?.let { ImageUrl(it.joinToString(",")) },
+        attachedFiles = this.attachedFiles?.let {
+            AttachedFile(
+                name = it.joinToString(",") { file -> file.name },
+                url = it.joinToString(",") { file -> file.url }
+            )
+        },
         postType = this.postType,
         createTime = this.createTime
     )
@@ -25,9 +27,11 @@ fun JobHuntEntity.toDomain(): PostDetail {
         postId = this.postId,
         title = this.title,
         content = this.content,
-        imageUrls = this.imageUrls.url.split(","),
-        attachedFiles = this.attachedFiles.url.split(",").zip(this.attachedFiles.name.split(",")).map {
-            AttachedFile(it.first, it.second)
+        imageUrls = this.imageUrls?.url?.split(","),
+        attachedFiles = this.attachedFiles?.let {
+            it.url.split(",").zip(it.name.split(",")).map { pair ->
+                AttachedFile(pair.second, pair.first)
+            }
         },
         postType = this.postType,
         createTime = this.createTime
