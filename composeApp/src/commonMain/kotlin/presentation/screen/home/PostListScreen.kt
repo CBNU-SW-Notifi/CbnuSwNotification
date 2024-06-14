@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import app.cash.paging.compose.collectAsLazyPagingItems
@@ -26,7 +27,12 @@ fun MainScreen(navController: NavController) {
         items(count = posts.itemCount) { index ->
             val post = posts[index]
             post?.let {
-                PostItem(post = it, onClick = { navController.navigate("postDetail/${it.postId}") })
+                PostItem(
+                    post = it,
+                    onClick = {
+                        navController.navigate("postDetail/${it.postId}")
+                    }
+                )
             }
         }
     }
@@ -34,13 +40,18 @@ fun MainScreen(navController: NavController) {
 
 @Composable
 fun PostItem(post: Post, onClick: () -> Unit) {
-    Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .clickable(onClick = onClick)
+    ) {
         Text(
             text = post.title,
             style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.clickable(onClick = onClick)
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
         Spacer(modifier = Modifier.height(4.dp))
-        //Text(text = "Created: ${post.createTime}")
     }
 }

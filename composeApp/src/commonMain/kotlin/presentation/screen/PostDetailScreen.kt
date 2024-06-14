@@ -32,6 +32,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -61,6 +63,7 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
 
     val minScale = 1f
     val maxScale = 3f
+    val panSpeedFactor = 0.5f
 
     postDetail?.let { detail ->
         Box(
@@ -73,23 +76,28 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
                         val maxX = (size.width * (scale - 1)) / (2 * scale)
                         val maxY = (size.height * (scale - 1)) / (2 * scale)
 
-                        offsetX = (offsetX + pan.x * scale).coerceIn(-maxX, maxX)
-                        offsetY = (offsetY + pan.y * scale).coerceIn(-maxY, maxY)
+                        offsetX = (offsetX + pan.x * panSpeedFactor).coerceIn(-maxX, maxX)
+                        offsetY = (offsetY + pan.y * panSpeedFactor).coerceIn(-maxY, maxY)
                     }
                 }
         ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(8.dp)
                     .scale(scale)
+                    .padding(bottom = 4.dp)
                     .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) },
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 item {
                     Text(
-                        text = "Title: ${detail.title}",
-                        style = MaterialTheme.typography.headlineMedium
+                        modifier = Modifier
+                            .padding(8.dp),
+                        text = detail.title,
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
 
                     HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
@@ -105,7 +113,9 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
                                 model = imageUrl,
                                 contentDescription = null,
                                 contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
                                 onState = { state ->
                                     when (state) {
                                         is AsyncImagePainter.State.Loading -> {
@@ -153,7 +163,9 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
 
                 item {
                     Text(
-                        text = "Content: ${detail.content}",
+                        modifier = Modifier
+                            .padding(8.dp),
+                        text = detail.content,
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -166,7 +178,9 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
 
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(4.dp)
                             ) {
                                 Text(
                                     text = "첨부 파일 ${index + 1} : ",
