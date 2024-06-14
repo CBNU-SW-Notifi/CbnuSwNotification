@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -63,7 +64,7 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
                     style = MaterialTheme.typography.headlineMedium
                 )
 
-                HorizontalDivider(color = Color.Gray, thickness = 1.dp)
+                HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
             }
 
             detail.imageUrls?.let { urls ->
@@ -130,7 +131,7 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
                 itemsIndexed(files) { index, attachedFile ->
                     if (attachedFile.name.isNotBlank()) {
 
-                        HorizontalDivider(color = Color.Gray, thickness = 1.dp)
+                        HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
 
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -154,7 +155,11 @@ fun PostDetailScreen(postId: Int, navController: NavController) {
             }
         }
     } ?: run {
-        // Handle the loading or error state if needed
-        Text(text = "Loading...", modifier = Modifier.fillMaxSize(), textAlign = TextAlign.Center)
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
     }
 }
