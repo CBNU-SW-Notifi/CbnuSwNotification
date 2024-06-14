@@ -47,53 +47,9 @@ fun App() {
     )
 
     MaterialTheme(colorScheme = colors) {
-        /*val people by postDetailDao.getAllPeople().collectAsState(initial = emptyList())
-        val scope = rememberCoroutineScope()
-
-        LaunchedEffect(true) {
-            val peopleList = listOf(
-                Person(name = "John"),
-                Person(name = "Alice"),
-                Person(name = "Philipp"),
-            )
-            peopleList.forEach {
-                postDetailDao.upsert(it)
-            }
-        }
-
-        LaunchedEffect(true) {
-            val peopleList = listOf(
-                InformationEntity(1, "sdffds", "fsdfsd", "fsdfsd", "gdffgd"),
-                InformationEntity(2, "sdffds", "fsdfsd", "fsdfsd", "gdffgd"),
-                InformationEntity(3, "sdffds", "fsdfsd", "fsdfsd", "gdffgd"),
-            )
-            peopleList.forEach {
-                //informationDao.upsert(it)
-            }
-        }*/
 
         val navController = rememberNavController()
         NavGraph(navController = navController)
-
-        /*LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-        ) {
-            items(people) { person ->
-                Text(
-                    text = person.name,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            scope.launch {
-                                peopleDao.delete(person)
-                            }
-                        }
-                        .padding(16.dp)
-                )
-            }
-        }*/
     }
 }
 
