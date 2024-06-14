@@ -1,5 +1,8 @@
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
@@ -14,9 +17,13 @@ import coil3.memory.MemoryCache
 import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
+import data.network.NetworkListener
+import data.network.NetworkStatus
+import kotlinx.coroutines.launch
 import navigation.NavGraph
 import okio.FileSystem
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -24,7 +31,9 @@ val darkRedColor = Color(color = 0xFF77000B)
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 @Preview
-fun App() {
+fun App(
+    networkListener: NetworkListener = koinInject()
+) {
 
     setSingletonImageLoaderFactory { context ->
         getAsyncImageLoader(context)
@@ -46,10 +55,32 @@ fun App() {
         if (isSystemInDarkTheme()) darkColors else lightColors
     )
 
-    MaterialTheme(colorScheme = colors) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val networkStatus by networkListener.networkStatus.collectAsState(NetworkStatus.Connected)
 
-        val navController = rememberNavController()
-        NavGraph(navController = navController)
+    LaunchedEffect(networkStatus) {
+        when (networkStatus) {
+            is NetworkStatus.Connected -> {
+                scope.launch {
+                    snackbarHostState.showSnackbar("인터넷에 연결되었습니다.")
+                }
+            }
+            is NetworkStatus.Disconnected -> {
+                scope.launch {
+                    snackbarHostState.showSnackbar("인터넷 연결이 끊어졌습니다.")
+                }
+            }
+        }
+    }
+
+    MaterialTheme(colorScheme = colors) {
+        Scaffold(
+            snackbarHost = { SnackbarHost(snackbarHostState) }
+        ) {
+            val navController = rememberNavController()
+            NavGraph(navController = navController)
+        }
     }
 }
 
