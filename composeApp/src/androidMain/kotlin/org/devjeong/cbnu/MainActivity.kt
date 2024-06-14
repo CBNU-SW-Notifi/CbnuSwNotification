@@ -4,7 +4,7 @@ import App
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import data.network.NetworkAwareApp
+import presentation.components.NetworkAwareSnackBar
 import org.devjeong.cbnu.network.AndroidNetworkMonitor
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         networkMonitor = AndroidNetworkMonitor(this)
 
         setContent {
-            NetworkAwareApp(networkMonitor) {
+            NetworkAwareSnackBar(networkMonitor) {
                 App()
             }
         }

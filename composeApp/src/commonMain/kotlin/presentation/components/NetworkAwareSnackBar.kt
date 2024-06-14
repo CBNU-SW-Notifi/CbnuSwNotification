@@ -1,4 +1,4 @@
-package data.network
+package presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -11,9 +11,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import data.network.NetworkMonitor
 
 @Composable
-fun NetworkAwareApp(networkMonitor: NetworkMonitor, content: @Composable () -> Unit) {
+fun NetworkAwareSnackBar(networkMonitor: NetworkMonitor, content: @Composable () -> Unit) {
     val isConnected by networkMonitor.isConnected.collectAsState(initial = true)
     val snackbarHostState = remember { SnackbarHostState() }
 
