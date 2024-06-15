@@ -32,7 +32,7 @@ fun HomeScreen(navController: NavHostController) {
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
 
-    val selectedColor = Color(0xFF3AC3E5)
+    val selectedColor = Color(0xFFBC2055)
     val unselectedColor = Color.Black
 
     Column {
