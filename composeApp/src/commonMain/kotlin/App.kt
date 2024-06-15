@@ -27,7 +27,6 @@ import navigation.NavGraph
 import okio.FileSystem
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
-import presentation.screen.home.HomeScreen
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -56,7 +55,7 @@ fun App(
         onPrimaryContainer = darkRedColor
     )
     val colors by mutableStateOf(
-        if (isSystemInDarkTheme()) darkColors else lightColors
+        if (isSystemInDarkTheme()) lightColors else lightColors
     )
 
     val snackbarHostState = remember { SnackbarHostState() }

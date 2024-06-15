@@ -1,6 +1,7 @@
 package presentation.screen.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -52,6 +53,7 @@ fun HomeScreen(navController: NavHostController) {
                     modifier = Modifier
                         .weight(1f)
                         .height(48.dp)
+                        .background(Color.White)
                         .clickable(
                             interactionSource = interactionSource,
                             indication = rememberRipple(color = selectedColor),
@@ -66,7 +68,7 @@ fun HomeScreen(navController: NavHostController) {
                     Text(
                         text = title,
                         color = if (selected) selectedColor else unselectedColor,
-                        fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium
+                        fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
                     )
                 }
             }
