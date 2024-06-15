@@ -74,7 +74,10 @@ fun HomeScreen(navController: NavHostController) {
             }
         }
 
-        HorizontalPager(state = pagerState) { page ->
+        HorizontalPager(
+            state = pagerState,
+            userScrollEnabled = false
+        ) { page ->
             when (tabs[page]) {
                 "취업 정보" -> JobInfoScreen(navController)
                 "학과 공지" -> NoticesScreen(navController)
