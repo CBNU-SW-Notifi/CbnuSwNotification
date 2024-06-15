@@ -1,4 +1,6 @@
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -6,6 +8,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import coil3.ImageLoader
@@ -24,6 +27,7 @@ import navigation.NavGraph
 import okio.FileSystem
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
+import presentation.screen.home.HomeScreen
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -74,12 +78,15 @@ fun App(
         }
     }
 
+    val navController = rememberNavController()
+
     MaterialTheme(colorScheme = colors) {
         Scaffold(
             snackbarHost = { SnackbarHost(snackbarHostState) }
-        ) {
-            val navController = rememberNavController()
-            NavGraph(navController = navController)
+        ) { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                NavGraph(navController = navController)
+            }
         }
     }
 }
