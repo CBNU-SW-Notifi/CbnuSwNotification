@@ -1,15 +1,17 @@
 package org.devjeong.cbnu
 
 import android.app.Application
-import di.initKoin
+import org.devjeong.cbnu.platform.AndroidApplicationComponent
+import di.initKoinAndroid
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
         instance = this
-        initKoin {
+        initKoinAndroid(appComponent = AndroidApplicationComponent()) {
             androidLogger()
             androidContext(this@MyApplication)
         }
