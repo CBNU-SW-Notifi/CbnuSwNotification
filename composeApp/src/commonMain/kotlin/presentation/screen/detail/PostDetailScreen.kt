@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,10 +38,13 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
@@ -71,14 +75,29 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text(tabTitle) },
-                navigationIcon = {
-                    IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+            Column {
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(
+                            tabTitle, style = TextStyle(
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight(700),
+                                color = Color(0xFF3AC3E5),
+                            )
+                        )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft,
+                                contentDescription = "Back",
+                                tint = Color(0xFF3AC3E5)
+                            )
+                        }
                     }
-                }
-            )
+                )
+                HorizontalDivider(color = Color(0xFF3AC3E5), thickness = 1.5.dp)
+            }
         }
     ) { paddingValues ->
         postDetail?.let { detail ->
@@ -109,7 +128,7 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                     item {
                         Text(
                             modifier = Modifier
-                                .padding(8.dp),
+                                .padding(start = 18.dp, top = 22.dp, end = 18.dp),
                             text = detail.title,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
@@ -117,7 +136,29 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                             overflow = TextOverflow.Ellipsis
                         )
 
-                        HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
+                        Text(
+                            modifier = Modifier
+                                .padding(start = 18.dp, top = 4.dp, end = 18.dp),
+                            text = "#${detail.postId} | ${detail.createTime}",
+                            style = TextStyle(
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight(500),
+                                color = Color(0xFF888888),
+                            )
+                        )
+                    }
+
+                    item {
+                        Text(
+                            modifier = Modifier
+                                .padding(start = 18.dp, top = 14.dp, end = 18.dp, bottom = 18.dp),
+                            text = detail.content,
+                            style = TextStyle(
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight(500),
+                                color = Color(0xFF444444),
+                            )
+                        )
                     }
 
                     detail.imageUrls?.let { urls ->
@@ -131,8 +172,7 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(8.dp),
+                                        .fillMaxWidth(),
                                     onState = { state ->
                                         when (state) {
                                             is AsyncImagePainter.State.Loading -> {
@@ -169,42 +209,61 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                         }
                     }
 
-                    item {
-                        Text(
-                            modifier = Modifier
-                                .padding(8.dp),
-                            text = detail.content,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                    }
-
                     detail.attachedFiles?.let { files ->
+                        if (files.isNotEmpty()) {
+                            item {
+                                HorizontalDivider(
+                                    modifier = Modifier
+                                        .padding(top = 18.dp),
+                                    color = Color.LightGray,
+                                    thickness = 1.dp
+                                )
+                            }
+                        }
                         itemsIndexed(files) { index, attachedFile ->
                             if (attachedFile.name.isNotBlank()) {
-                                HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
-
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(4.dp)
+                                        .padding(top = 7.dp, start = 18.dp)
                                 ) {
                                     Text(
                                         text = "첨부 파일 ${index + 1} : ",
-                                        style = MaterialTheme.typography.bodyMedium
+                                        style = TextStyle(
+                                            fontSize = 13.sp,
+                                            fontWeight = FontWeight(500),
+                                            color = Color(0xFF000000),
+                                            letterSpacing = 0.65.sp
+                                        )
                                     )
                                     Text(
                                         text = attachedFile.name,
-                                        color = Color.Blue,
                                         modifier = Modifier.clickable {
                                             getOpenUrl(context).open(attachedFile.url)
                                         },
-                                        style = MaterialTheme.typography.bodyMedium
+                                        style = TextStyle(
+                                            fontSize = 13.sp,
+                                            fontWeight = FontWeight(500),
+                                            color = Color(0xFF666666),
+                                            textDecoration = TextDecoration.Underline
+                                        )
                                     )
                                 }
                             }
                         }
+                        if (files.isNotEmpty()) {
+                            item {
+                                HorizontalDivider(
+                                    modifier = Modifier
+                                        .padding(top = 7.dp, bottom = 24.dp),
+                                    color = Color.LightGray,
+                                    thickness = 1.dp
+                                )
+                            }
+                        }
                     }
+
                 }
             }
         } ?: run {
