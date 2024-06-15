@@ -7,9 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import presentation.screen.detail.PostDetailScreen
 import presentation.screen.home.HomeScreen
-import presentation.screen.home.JobInfoScreen
-import presentation.screen.home.NoticesScreen
-import presentation.screen.home.component.CategoryTab
 
 @Composable
 fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
