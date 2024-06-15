@@ -27,6 +27,7 @@ import navigation.NavGraph
 import okio.FileSystem
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
+import presentation.theme.pretendardTypography
 
 val lightRedColor = Color(color = 0xFFF57D88)
 val darkRedColor = Color(color = 0xFF77000B)
@@ -55,7 +56,7 @@ fun App(
         onPrimaryContainer = darkRedColor
     )
     val colors by mutableStateOf(
-        if (isSystemInDarkTheme()) lightColors else lightColors
+        if (isSystemInDarkTheme()) darkColors else lightColors
     )
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -69,6 +70,7 @@ fun App(
                     snackbarHostState.showSnackbar("인터넷에 연결되었습니다.")
                 }
             }
+
             is NetworkStatus.Disconnected -> {
                 scope.launch {
                     snackbarHostState.showSnackbar("인터넷 연결이 끊어졌습니다.")
@@ -79,7 +81,10 @@ fun App(
 
     val navController = rememberNavController()
 
-    MaterialTheme(colorScheme = colors) {
+    MaterialTheme(
+        typography = pretendardTypography(),
+        colorScheme = colors
+    ) {
         Scaffold(
             snackbarHost = { SnackbarHost(snackbarHostState) }
         ) { paddingValues ->
