@@ -47,7 +47,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation"}
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
@@ -80,7 +80,7 @@ androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "l
 
 kmpNotifier = { group = "io.github.mirzemehdi", name = "kmpnotifier", version.ref = "kmpNotifier" }
 
-kmLogging = {module = "org.lighthousegames:logging", version.ref = "kmLogging"}
+kmLogging = { module = "org.lighthousegames:logging", version.ref = "kmLogging" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

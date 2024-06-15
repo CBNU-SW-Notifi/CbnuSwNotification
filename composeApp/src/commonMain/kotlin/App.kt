@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.darkColorScheme
@@ -86,7 +87,18 @@ fun App(
         colorScheme = colors
     ) {
         Scaffold(
-            snackbarHost = { SnackbarHost(snackbarHostState) }
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    snackbar = { data ->
+                        Snackbar(
+                            snackbarData = data,
+                            containerColor = if (isSystemInDarkTheme()) Color.DarkGray else Color.White,
+                            contentColor = if (isSystemInDarkTheme()) Color.White else Color.Black
+                        )
+                    }
+                )
+            }
         ) { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
                 NavGraph(navController = navController)
@@ -94,7 +106,6 @@ fun App(
         }
     }
 }
-
 
 fun getAsyncImageLoader(context: PlatformContext) =
     ImageLoader.Builder(context).memoryCachePolicy(CachePolicy.ENABLED).memoryCache {
