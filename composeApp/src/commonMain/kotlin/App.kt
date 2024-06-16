@@ -48,13 +48,15 @@ fun App(
         primary = lightRedColor,
         onPrimary = darkRedColor,
         primaryContainer = lightRedColor,
-        onPrimaryContainer = darkRedColor
+        onPrimaryContainer = darkRedColor,
+        background = Color.White
     )
     val darkColors = darkColorScheme(
         primary = lightRedColor,
         onPrimary = darkRedColor,
         primaryContainer = lightRedColor,
-        onPrimaryContainer = darkRedColor
+        onPrimaryContainer = darkRedColor,
+        background = Color.White
     )
     val colors by mutableStateOf(
         if (isSystemInDarkTheme()) darkColors else lightColors
