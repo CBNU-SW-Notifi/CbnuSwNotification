@@ -52,6 +52,7 @@ import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import coil3.compose.LocalPlatformContext
+import com.mmk.kmpnotifier.notification.NotifierManager
 import getOpenUrl
 import org.koin.compose.getKoin
 import presentation.components.LoadingAnimation
@@ -75,6 +76,9 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
     val minScale = 1f
     val maxScale = 3f
     val panSpeedFactor = 0.5f
+
+    val notifier = NotifierManager.getLocalNotifier()
+    notifier.notify("이혁수 힘내라!!", "헤헤 방귀 뿡뿡")
 
     Scaffold(
         topBar = {

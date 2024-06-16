@@ -31,6 +31,9 @@ gson = "2.11.0"
 pagingCommonVersion = "3.3.0-alpha02-0.5.1"
 kmpNotifier = "0.6.0"
 kmLogging = "1.4.2"
+firebaseBom="33.1.0"
+googleServices="4.4.2"
+firebaseCrashlytics = "3.0.1"
 
 [libraries]
 androidGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -78,9 +81,17 @@ androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycl
 androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 
+#Push Notification
 kmpNotifier = { group = "io.github.mirzemehdi", name = "kmpnotifier", version.ref = "kmpNotifier" }
 
 kmLogging = { module = "org.lighthousegames:logging", version.ref = "kmLogging" }
+
+#Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -91,6 +102,8 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 gradle-buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-content-negotiation"]

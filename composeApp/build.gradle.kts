@@ -13,6 +13,9 @@ plugins {
     alias(libs.plugins.gradle.buildconfig)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 buildConfig {
@@ -40,7 +43,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
-            //export(libs.kmpNotifier)
+            export(libs.kmpNotifier)
         }
     }
 
@@ -52,6 +55,11 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
             implementation(libs.room.runtime.android)
+
+            api(project.dependencies.platform(libs.firebase.bom))
+            api(libs.firebase.analytics)
+            api(libs.firebase.crashlytics)
+            api(libs.firebase.messaging)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

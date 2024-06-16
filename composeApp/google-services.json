@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630443243547",
+    "project_id": "cbnu-sw-notification",
+    "storage_bucket": "cbnu-sw-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630443243547:android:15720f3f24a88d6d05a0be",
+        "android_client_info": {
+          "package_name": "org.devjeong.cbnu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC36m-0uD4IxGL24iUNTgIMs6xeOA6AAw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

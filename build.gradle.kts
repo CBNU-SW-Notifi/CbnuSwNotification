@@ -18,5 +18,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
-    id("com.google.gms.google-services") version "4.4.0" apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
 }
