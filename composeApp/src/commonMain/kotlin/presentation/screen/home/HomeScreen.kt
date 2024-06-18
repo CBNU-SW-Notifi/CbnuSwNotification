@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -43,6 +44,9 @@ fun HomeScreen(navController: NavHostController) {
                     Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
                     color = selectedColor
                 )
+            },
+            divider = {
+                HorizontalDivider(color = Color(0xFFDEDEDE), thickness = 1.dp)
             }
         ) {
             tabs.forEachIndexed { index, title ->

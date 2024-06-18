@@ -44,7 +44,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -158,9 +157,7 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                             text = detail.title,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF222222),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            color = Color(0xFF222222)
                         )
 
                         Text(
