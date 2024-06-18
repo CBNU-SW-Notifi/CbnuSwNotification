@@ -166,6 +166,7 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
                         Text(
                             modifier = Modifier
                                 .padding(start = 18.dp, top = 4.dp, end = 18.dp),
+                            //TODO : postId 삭제
                             text = "#${detail.postId} | ${detail.createTime}",
                             style = TextStyle(
                                 fontSize = 11.sp,
