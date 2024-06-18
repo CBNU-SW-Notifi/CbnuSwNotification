@@ -50,7 +50,7 @@ fun PostItem(post: Post, onClick: () -> Unit) {
             Text(
                 modifier = Modifier
                     .padding(start = 37.dp, end = 20.dp, top = 22.dp, bottom = 20.dp),
-                text = "${post.createTime} | #${post.postId}",
+                text = post.createTime,
                 style = TextStyle(
                     fontSize = 11.sp,
                     fontWeight = FontWeight(500),

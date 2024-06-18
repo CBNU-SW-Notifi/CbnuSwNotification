@@ -12,7 +12,8 @@ class PostPagingSource(private val jobHuntRepository: JobHuntRepository) : Pagin
         val page = params.key ?: 0
         return try {
             val response = jobHuntRepository.fetchData(page, params.loadSize).first()
-            val data = response.data.sortedByDescending { it.postId }
+            val data = response.data
+            //val data = response.data.sortedByDescending { it.postId }
             LoadResult.Page(
                 data = data,
                 prevKey = if (page == 0) null else page - 1,
