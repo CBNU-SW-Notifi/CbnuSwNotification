@@ -77,8 +77,8 @@ fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController
     val maxScale = 3f
     val panSpeedFactor = 0.5f
 
-    val notifier = NotifierManager.getLocalNotifier()
-    notifier.notify("이혁수 힘내라!!", "헤헤 방귀 뿡뿡")
+    /*val notifier = NotifierManager.getLocalNotifier()
+    notifier.notify("이혁수 힘내라!!", "헤헤 방귀 뿡뿡")*/
 
     Scaffold(
         topBar = {
