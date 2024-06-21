@@ -101,6 +101,10 @@ kotlin {
 
             implementation(libs.paging.compose.common)
 
+            api(libs.androidx.datastore.preferences.core)
+            api(libs.androidx.datastore.core.okio)
+            implementation(libs.okio)
+
             api(libs.kmpNotifier)
 
             api(libs.kmLogging)
