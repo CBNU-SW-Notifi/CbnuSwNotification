@@ -16,7 +16,6 @@ data class JobHuntEntity(
     val imageUrls: ImageUrl?,
     @Embedded(prefix = "attached_")
     val attachedFiles: AttachedFile?,
-    val postType: String,
     val createTime: String
 )
 

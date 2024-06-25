@@ -1,11 +1,11 @@
 package database
 
 import data.model.job_hunt.AttachedFile
-import data.model.job_hunt.PostDetail
+import data.model.job_hunt.JobHuntDetail
 import database.job_hunt.ImageUrl
 import database.job_hunt.JobHuntEntity
 
-fun PostDetail.toEntity(): JobHuntEntity {
+fun JobHuntDetail.toEntity(): JobHuntEntity {
     return JobHuntEntity(
         postId = this.postId,
         title = this.title,
@@ -17,13 +17,12 @@ fun PostDetail.toEntity(): JobHuntEntity {
                 url = it.joinToString(",") { file -> file.url }
             )
         },
-        postType = this.postType,
         createTime = this.createTime
     )
 }
 
-fun JobHuntEntity.toDomain(): PostDetail {
-    return PostDetail(
+fun JobHuntEntity.toDomain(): JobHuntDetail {
+    return JobHuntDetail(
         postId = this.postId,
         title = this.title,
         content = this.content,
@@ -33,15 +32,14 @@ fun JobHuntEntity.toDomain(): PostDetail {
                 AttachedFile(pair.second, pair.first)
             }
         },
-        postType = this.postType,
         createTime = this.createTime
     )
 }
 
-fun List<PostDetail>.toJobHuntEntityList(): List<JobHuntEntity> {
+fun List<JobHuntDetail>.toJobHuntEntityList(): List<JobHuntEntity> {
     return this.map { it.toEntity() }
 }
 
-fun List<JobHuntEntity>.toPostDetailDomainList(): List<PostDetail> {
+fun List<JobHuntEntity>.toPostDetailDomainList(): List<JobHuntDetail> {
     return this.map { it.toDomain() }
 }

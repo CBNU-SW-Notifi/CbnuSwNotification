@@ -51,7 +51,6 @@ import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import coil3.compose.LocalPlatformContext
-import com.mmk.kmpnotifier.notification.NotifierManager
 import getOpenUrl
 import org.koin.compose.getKoin
 import presentation.components.LoadingAnimation
@@ -61,7 +60,7 @@ import kotlin.math.roundToInt
 @Composable
 fun PostDetailScreen(postId: Int, tabTitle: String, navController: NavController) {
     val viewModel: PostDetailViewModel = getKoin().get()
-    val postDetail by viewModel.postDetail.collectAsState()
+    val postDetail by viewModel.jobHuntDetail.collectAsState()
 
     LaunchedEffect(postId) {
         viewModel.getPostDetail(postId)

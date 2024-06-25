@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a3ccf85c07bbcbc341d41f1e8017bd64",
+    "identityHash": "2ed54f43800054ab161b558606807cd7",
     "entities": [
       {
         "tableName": "job_hunt_entity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`postId` INTEGER NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `postType` TEXT NOT NULL, `createTime` TEXT NOT NULL, `image_url` TEXT, `attached_name` TEXT, `attached_url` TEXT, PRIMARY KEY(`postId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`postId` INTEGER NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `createTime` TEXT NOT NULL, `image_url` TEXT, `attached_name` TEXT, `attached_url` TEXT, PRIMARY KEY(`postId`))",
         "fields": [
           {
             "fieldPath": "postId",
@@ -23,12 +23,6 @@
           {
             "fieldPath": "content",
             "columnName": "content",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "postType",
-            "columnName": "postType",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -64,7 +58,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a3ccf85c07bbcbc341d41f1e8017bd64')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2ed54f43800054ab161b558606807cd7')"
     ]
   }
 }

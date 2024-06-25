@@ -2,8 +2,7 @@ package data.repositories
 
 import NetworkConstants
 import data.model.ResponseData
-import data.model.job_hunt.PostDetail
-import database.job_hunt.JobHuntEntity
+import data.model.job_hunt.JobHuntDetail
 import database.job_hunt.PostDetailDao
 import database.toDomain
 import database.toEntity
@@ -23,7 +22,7 @@ class JobHuntRepository(
 
     suspend fun fetchData(page: Int, size: Int): Flow<ResponseData> = flow {
         val response: HttpResponse =
-            client.get(NetworkConstants.BASE_URL + "/api/v1/information-post/list") {
+            client.get(NetworkConstants.BASE_URL + "/api/v1/job-hunt-post/list") {
                 parameter("page", page)
                 parameter("size", size)
             }
@@ -35,15 +34,15 @@ class JobHuntRepository(
         emit(responseData)
     }
 
-    suspend fun fetchPostDetail(postId: Int): Flow<PostDetail> = flow {
+    suspend fun fetchJobHuntPostDetail(postId: Int): Flow<JobHuntDetail> = flow {
         var jobHuntEntity = postDetailDao.getPostDetail(postId)
         if (jobHuntEntity == null) {
             val response: HttpResponse =
-                client.get("${NetworkConstants.BASE_URL}/api/v1/information-post/read/$postId")
-            val postDetail = response.bodyAsText().let {
-                json.decodeFromString<PostDetail>(it)
+                client.get("${NetworkConstants.BASE_URL}/api/v1/job-hunt-post/read/$postId")
+            val jobHuntDetail = response.bodyAsText().let {
+                json.decodeFromString<JobHuntDetail>(it)
             }
-            jobHuntEntity = postDetail.toEntity()
+            jobHuntEntity = jobHuntDetail.toEntity()
             postDetailDao.insertPostDetail(jobHuntEntity)
         }
         emit(jobHuntEntity.toDomain())

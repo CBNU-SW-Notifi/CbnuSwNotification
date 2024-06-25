@@ -3,13 +3,12 @@ package data.model.job_hunt
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PostDetail(
+data class JobHuntDetail(
     val postId: Int,
     val title: String,
     val content: String,
     val imageUrls: List<String>?,
     val attachedFiles: List<AttachedFile>?,
-    val postType: String,
     val createTime: String
 )
 
