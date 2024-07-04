@@ -1,17 +1,17 @@
 package data.source
 
-import app.cash.paging.PagingSource
-import app.cash.paging.PagingState
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import data.model.Post
-import data.repositories.JobHuntRepository
+import data.repositories.DeptNotificationListRepository
 import kotlinx.coroutines.flow.first
 
-class PostPagingSource(private val jobHuntRepository: JobHuntRepository) : PagingSource<Int, Post>() {
+class NoticePostPagingSource(private val deptNotificationListRepository: DeptNotificationListRepository) : PagingSource<Int, Post>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Post> {
         val page = params.key ?: 0
         return try {
-            val response = jobHuntRepository.fetchData(page, params.loadSize).first()
+            val response = deptNotificationListRepository.fetchNoticePostData(page, params.loadSize).first()
             val data = response.data
             //val data = response.data.sortedByDescending { it.postId }
             LoadResult.Page(

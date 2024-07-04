@@ -15,7 +15,7 @@ import presentation.screen.home.component.PostItem
 @Composable
 fun JobInfoScreen(navController: NavController) {
     val viewModel: HomeViewModel = getKoin().get()
-    val posts = viewModel.pagingDataFlow.collectAsLazyPagingItems()
+    val posts = viewModel.pagingJobDataFlow.collectAsLazyPagingItems()
 
     LazyColumn(
         modifier = Modifier

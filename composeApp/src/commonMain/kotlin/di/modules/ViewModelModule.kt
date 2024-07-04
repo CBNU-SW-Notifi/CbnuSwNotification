@@ -6,7 +6,7 @@ import presentation.screen.detail.PostDetailViewModel
 
 val provideViewModelModule = module {
     single {
-        HomeViewModel(get())
+        HomeViewModel(get(), get())
     }
     single {
         PostDetailViewModel(get())
